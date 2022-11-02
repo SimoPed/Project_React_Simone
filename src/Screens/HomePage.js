@@ -10,7 +10,7 @@ export const HomePage = ({navigation}) => {
                 style={{flex: 1, alignItems: 'center'}}
             >
                 <View style={styles.elementContainer}>
-                    <View style={{justifyContent: 'space-between', flexDirection: 'row',}}>
+                    <View style={{flexDirection: 'row'}}>
                     <View style={{flexDirection: 'row', marginLeft: 10}}>
                         <Image source={{uri: 'https://www.cheergeelong.com/favicon.png'}}
                                resizeMode={'contain'}
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '12%',
         flexDirection: 'row',
-        // justifyContent: 'space-between'
+        justifyContent: 'space-around',
         // backgroundColor: '#CCFFFF'
     }
 });

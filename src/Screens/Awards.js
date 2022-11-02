@@ -1,8 +1,19 @@
 import React from 'react';
-import {View} from "react-native";
+import {SafeAreaView, StyleSheet, Text, View} from "react-native";
 
 export const Awards = () => {
     return (
-      <View style={{flex: 1, backgroundColor: 'green'}}></View>
+      <SafeAreaView style={{flex: 1}}>
+          <View style={{alignItems: 'center'}}>
+              <Text style={styles.title}>Your Awards</Text>
+          </View>
+      </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    title: {
+        fontSize: 30,
+        fontStyle: 'italic'
+    }
+});

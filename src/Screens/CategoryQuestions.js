@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Timer} from "../components/Timer";
 
 const getCategoryQuestions = async () => {
     const response = await fetch('https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple');
@@ -31,9 +32,8 @@ const CategoryQuestions = () => {
             <View style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
                 <View style={{alignItems: 'center',  marginRight: 10, marginLeft: 10, marginTop: 10}}>
                     <Text style={styles.question}>{listQuestion[index].question.replaceAll('&#039;', '\'').replaceAll('&oacute;', 'o')}</Text>
+                        <Timer/>
                     <View style={{justifyContent: 'flex-end'}}>
-
-
                     <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%', marginTop: 30}}>
                         <TouchableOpacity
                             style={styles.answers}>

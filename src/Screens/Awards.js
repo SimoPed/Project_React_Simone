@@ -3,7 +3,6 @@ import {
     ImageBackground,
     SafeAreaView,
     ScrollView,
-    StatusBar,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -19,7 +18,7 @@ export const Awards = () => {
                 source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Flag_blue_white_5x3.svg/1200px-Flag_blue_white_5x3.svg.png'}}>
                 <View>
                     <Text style={styles.title}>Your awards</Text>
-                    <Text style={{marginTop: 10, fontSize: 16}}>Always do better!</Text>
+                    <Text style={{marginTop: 10, fontSize: 16, color: 'white', marginLeft: 10}}>Always do better!</Text>
                 </View>
                 <View style={{flexDirection: 'row', alignItems: 'center', shadowColor: 'black', shadowOpacity: 0.4}}>
                     <ScrollView
@@ -27,7 +26,7 @@ export const Awards = () => {
                         pagingEnabled={true}
                         centerContent={true}
                         contentContainerStyle={{alignItems: 'center'}}
-                        contentOffset={{x: -20, y: 0}}
+                        contentOffset={{x: 0, y: 0}}
                     >
                         <View style={{width: '26%', alignItems: 'center', marginTop: 30, backgroundColor: 'white', borderRadius: 20, marginRight: 20}}>
                             <Text style={{marginBottom: 5, marginTop: 20}}>Level 2</Text>
@@ -145,6 +144,8 @@ export const Awards = () => {
 const styles = StyleSheet.create({
     title: {
         fontSize: 30,
-        fontFamily: 'Inter_900Black'
+        fontFamily: 'Inter_900Black',
+        color: 'white',
+        marginLeft: 10
     }
 });

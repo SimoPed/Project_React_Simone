@@ -1,34 +1,36 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View, StyleSheet} from "react-native";
+import React, {useState} from 'react';
+import {Text, View, StyleSheet} from "react-native";
+import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+import Constants from 'expo-constants';
 
-const Timer = () => {
-    const [time, setTime] = React.useState(10);
-    const timerRef = useRef(time);
-
-    useEffect(() => {
-        const timerId = setInterval(() => {
-            timerRef.current -= 1;
-            if (timerRef.current < 0) {
-                clearInterval(timerId);
-            } else {
-                setTime(timerRef.current);
-            }
-        }, 1000);
-        return () => {
-            clearInterval(timerId);
-        };
-    }, []);
+export const Timer = () => {
+    const [isPlaying, setIsPlaying] = useState(true)
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <View style={{backgroundColor: 'red', borderRadius: 50, width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}}>
-                <Text style={{padding: 40, fontSize: 25}}>{time}</Text>
-            </View>
+        <View style={styles.container}>
+            <CountdownCircleTimer
+                size={120}
+                isPlaying={isPlaying}
+                duration={10}
+                colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
+                colorsTime={[10, 6, 3, 0]}
+                onComplete={() => ({shouldRepeat: false})}
+            >
+                {({ remainingTime, color }) => (
+                    <Text style={{ color, fontSize: 40 }}>
+                        {remainingTime}
+                    </Text>
+                )}
+            </CountdownCircleTimer>
         </View>
     )
 }
+
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 5,
+    }
 });
-
-export default Timer;

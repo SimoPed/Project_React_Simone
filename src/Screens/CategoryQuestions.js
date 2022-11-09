@@ -29,8 +29,11 @@ const CategoryQuestions = () => {
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
-                <View style={{alignItems: 'center',  marginRight: 10, marginLeft: 10}}>
+                <View style={{alignItems: 'center',  marginRight: 10, marginLeft: 10, marginTop: 10}}>
                     <Text style={styles.question}>{listQuestion[index].question.replaceAll('&#039;', '\'').replaceAll('&oacute;', 'o')}</Text>
+                    <View style={{justifyContent: 'flex-end'}}>
+
+
                     <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%', marginTop: 30}}>
                         <TouchableOpacity
                             style={styles.answers}>
@@ -63,6 +66,7 @@ const CategoryQuestions = () => {
                             <Text style={styles.response}>{listQuestion[index].incorrect_answers[2]}</Text>
                         </TouchableOpacity>
                     </View>
+                </View>
                 </View>
             </View>
         </SafeAreaView>

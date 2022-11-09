@@ -28,8 +28,8 @@ const CategoryQuestions = () => {
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            <View style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)', marginTop: 30}}>
-                <View style={{alignItems: 'center'}}>
+            <View style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
+                <View style={{alignItems: 'center',  marginRight: 10, marginLeft: 10}}>
                     <Text style={styles.question}>{listQuestion[index].question.replaceAll('&#039;', '\'').replaceAll('&oacute;', 'o')}</Text>
                     <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%', marginTop: 30}}>
                         <TouchableOpacity

@@ -1,7 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {Card} from "../components/Card";
 import {categories} from "../mocks/categories";
-import {View, FlatList, Text, StyleSheet} from "react-native";
+import {View, FlatList, Text, StyleSheet, SafeAreaView} from "react-native";
+import {Inter_900Black, useFonts} from "@expo-google-fonts/inter";
 
 export const Categories = ({navigation}) => {
 
@@ -31,7 +32,7 @@ export const Categories = ({navigation}) => {
     },[])
 
     return(
-        <View style={{flex: 1, marginTop: 30}}>
+        <SafeAreaView style={{flex: 1, marginTop: 30}}>
             <View style={{alignItems: 'center'}}>
             <Text style={styles.title}>Choose the category</Text>
             </View>
@@ -41,13 +42,14 @@ export const Categories = ({navigation}) => {
                 ItemSeparatorComponent={ItemSeparatorComponent}
                 contentContainerStyle={{paddingHorizontal: 16}}
             />
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 35,
+        fontSize: 30,
         marginBottom: 20,
+        fontFamily: 'Inter_900Black'
     }
 });

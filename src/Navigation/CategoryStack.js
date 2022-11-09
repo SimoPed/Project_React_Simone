@@ -7,12 +7,14 @@ const Stack = createNativeStackNavigator();
 
 export const CategoryStack = () => {
     return (
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator>
             <Stack.Screen
+                options={{headerShown: false}}
                 name='Categories'
                 component={Categories}
             />
             <Stack.Screen
+                options={{headerShown: true}}
                 name='CategoryQuestions'
                 component={CategoryQuestions}
             />

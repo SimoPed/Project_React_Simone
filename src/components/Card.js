@@ -15,7 +15,7 @@ export const Card = memo(({id, category, image, onPress}) => {
     return (
         <SafeAreaView style={{flex: 1}}>
             <TouchableOpacity onPress={() => onPress()}>
-                <View style={{borderRadius: 10, overflow: 'hidden', width: '100%'}}>
+                <View style={{borderRadius: 20, overflow: 'hidden', width: '100%'}}>
                     <ImageBackground
                         source={{uri: image}}
                         resizeMode={'cover'}

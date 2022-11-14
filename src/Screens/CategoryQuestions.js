@@ -1,15 +1,16 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Timer} from "../components/Timer";
+import AnimatedLottieView from "lottie-react-native";
 
 const getCategoryQuestions = async () => {
+    // const {category} = route.params
     const response = await fetch('https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple');
     const data = await response.json();
     return data.results;
 }
 
 const CategoryQuestions = () => {
-
 
     const [listQuestion, setListQuestion] = useState([])
     const [index, setIndex] = useState(0)
@@ -18,31 +19,38 @@ const CategoryQuestions = () => {
         getCategoryQuestions().then(setListQuestion)
     }, [])
 
-    useEffect(() => {
-        setIndex(index => index + 1)
-    }, [])
-
-
     if (!listQuestion.length) {
         return null
+    }
+
+    const NextQuestion = () => {
+        setIndex(index => index + 1)
     }
 
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
                 <View style={{alignItems: 'center',  marginRight: 10, marginLeft: 10, marginTop: 10}}>
-                    <Text style={styles.question}>{listQuestion[index].question.replaceAll('&#039;', '\'').replaceAll('&oacute;', 'o')}</Text>
+                    <Text style={styles.question}>{listQuestion[index].question.replaceAll('&#039;', '\'').replace('&oacute;', 'o')}</Text>
                         <Timer/>
                     <View style={{justifyContent: 'flex-end'}}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%', marginTop: 30}}>
                         <TouchableOpacity
+                            onPress={NextQuestion}
                             style={styles.answers}>
+                            <AnimatedLottieView
+                                style={{width: 80, height: 80}}
+                                source={require('../lottie/correctAnimation.json')}
+                                autoPlay={true}
+                                loop={false}
+                            />
                             <View style={styles.firstCircle}>
                                 <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>A</Text>
                             </View>
                             <Text style={styles.response}>{listQuestion[index].correct_answer}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            onPress={NextQuestion}
                             style={styles.answers}>
                             <View style={styles.secondCircle}>
                                 <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>B</Text>
@@ -52,6 +60,7 @@ const CategoryQuestions = () => {
                     </View>
                     <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%'}}>
                         <TouchableOpacity
+                            onPress={NextQuestion}
                             style={styles.answers}>
                             <View style={styles.thirdCircle}>
                                 <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>C</Text>
@@ -59,6 +68,7 @@ const CategoryQuestions = () => {
                             <Text style={styles.response}>{listQuestion[index].incorrect_answers[1]}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            onPress={NextQuestion}
                             style={styles.answers}>
                             <View style={styles.fourthCircle}>
                                 <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>D</Text>

@@ -24,7 +24,7 @@ const CategoryQuestions = () => {
 
 
     if (!listQuestion.length) {
-        return null;
+        return null
     }
 
     return (

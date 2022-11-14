@@ -32,5 +32,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 5,
+        marginTop: 70
     }
 });

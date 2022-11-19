@@ -32,7 +32,7 @@ const CategoryQuestions = () => {
             <View style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
                 <View style={{alignItems: 'center',  marginRight: 10, marginLeft: 10, marginTop: 10}}>
                     <Text style={styles.question}>{listQuestion[index].question.replaceAll('&#039;', '\'').replace('&oacute;', 'o')}</Text>
-                        <Timer/>
+                        {/*<Timer/>*/}
                     <View style={{justifyContent: 'flex-end'}}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%', marginTop: 30}}>
                         <TouchableOpacity

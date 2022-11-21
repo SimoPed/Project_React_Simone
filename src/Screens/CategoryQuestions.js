@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {Timer} from "../components/Timer";
 import AnimatedLottieView from "lottie-react-native";
 
 const getCategoryQuestions = async () => {
@@ -10,7 +9,7 @@ const getCategoryQuestions = async () => {
     return data.results;
 }
 
-const CategoryQuestions = () => {
+const CategoryQuestions = ({navigation}) => {
 
     const [listQuestion, setListQuestion] = useState([])
     const [index, setIndex] = useState(0)
@@ -30,53 +29,67 @@ const CategoryQuestions = () => {
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
-                <View style={{alignItems: 'center',  marginRight: 10, marginLeft: 10, marginTop: 10}}>
-                    <Text style={styles.question}>{listQuestion[index].question.replaceAll('&#039;', '\'').replace('&oacute;', 'o')}</Text>
-                        {/*<Timer/>*/}
-                    <View style={{justifyContent: 'flex-end'}}>
-                    <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%', marginTop: 30}}>
-                        <TouchableOpacity
-                            onPress={NextQuestion}
-                            style={styles.answers}>
-                            <AnimatedLottieView
-                                style={{width: 80, height: 80}}
-                                source={require('../lottie/correctAnimation.json')}
-                                autoPlay={true}
-                                loop={false}
-                            />
-                            <View style={styles.firstCircle}>
-                                <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>A</Text>
+                <View style={{alignItems: 'center', marginRight: 10, marginLeft: 10, marginTop: 10}}>
+                    {index == 10 ? <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('Categories')
+                        }
+                        }>
+                        <Text style={{fontSize: 30}}>Categories</Text>
+                    </TouchableOpacity> : <View>
+                        <Text
+                            style={styles.question}>{listQuestion[index].question.replace('&#039;', '\'').replace('&oacute;', 'o')}</Text>
+                        <View style={{justifyContent: 'flex-end'}}>
+                            <View style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-around',
+                                width: '100%',
+                                marginTop: 30
+                            }}>
+                                <TouchableOpacity
+                                    onPress={NextQuestion}
+                                    style={styles.answers}>
+                                    <AnimatedLottieView
+                                        style={{width: 80, height: 80}}
+                                        // source={require('../lottie/correctAnimation.json')}
+                                        autoPlay={true}
+                                        loop={false}
+                                    />
+                                    <View style={styles.firstCircle}>
+                                        <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>A</Text>
+                                    </View>
+                                    <Text style={styles.response}>{listQuestion[index].correct_answer}</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={NextQuestion}
+                                    style={styles.answers}>
+                                    <View style={styles.secondCircle}>
+                                        <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>B</Text>
+                                    </View>
+                                    <Text style={styles.response}>{listQuestion[index].incorrect_answers[0]}</Text>
+                                </TouchableOpacity>
                             </View>
-                            <Text style={styles.response}>{listQuestion[index].correct_answer}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={NextQuestion}
-                            style={styles.answers}>
-                            <View style={styles.secondCircle}>
-                                <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>B</Text>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%'}}>
+                                <TouchableOpacity
+                                    onPress={NextQuestion}
+                                    style={styles.answers}>
+                                    <View style={styles.thirdCircle}>
+                                        <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>C</Text>
+                                    </View>
+                                    <Text style={styles.response}>{listQuestion[index].incorrect_answers[1]}</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={NextQuestion}
+                                    style={styles.answers}>
+                                    <View style={styles.fourthCircle}>
+                                        <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>D</Text>
+                                    </View>
+                                    <Text style={styles.response}>{listQuestion[index].incorrect_answers[2]}</Text>
+                                </TouchableOpacity>
                             </View>
-                            <Text style={styles.response}>{listQuestion[index].incorrect_answers[0]}</Text>
-                        </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%'}}>
-                        <TouchableOpacity
-                            onPress={NextQuestion}
-                            style={styles.answers}>
-                            <View style={styles.thirdCircle}>
-                                <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>C</Text>
-                            </View>
-                            <Text style={styles.response}>{listQuestion[index].incorrect_answers[1]}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={NextQuestion}
-                            style={styles.answers}>
-                            <View style={styles.fourthCircle}>
-                                <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>D</Text>
-                            </View>
-                            <Text style={styles.response}>{listQuestion[index].incorrect_answers[2]}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                    }
                 </View>
             </View>
         </SafeAreaView>

@@ -4,9 +4,6 @@ import {HomeStack} from "./Navigation/HomeStack";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {CategoryStack} from "./Navigation/CategoryStack";
 import {AwardStack} from "./Navigation/AwardStack";
-import {View} from "react-native";
-import Icon from "./icon/Icons";
-import {getFocusedRouteNameFromRoute} from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +28,7 @@ export const BottomStack = () => {
                     tabBarShowLabel: false,
                     tabBarIcon: ({focused}) => <Ionicons name="copy-outline" size={24}/>,
                 }}
-                name='Categories'
+                name='CategoriesTab'
                 component={CategoryStack}
             />
             <Tab.Screen
@@ -39,7 +36,7 @@ export const BottomStack = () => {
                     tabBarShowLabel: false,
                     tabBarIcon: ({focused}) => <Ionicons name="home-outline" size={24}/>,
                 }}
-                name='HomePage'
+                name='HomePageTab'
                 component={HomeStack}
             />
             <Tab.Screen
@@ -47,7 +44,7 @@ export const BottomStack = () => {
                     tabBarShowLabel: false,
                     tabBarIcon: ({focused}) => <Ionicons name="trophy-outline" size={24}/>,
                 }}
-                name='Awards'
+                name='AwardsTab'
                 component={AwardStack}
             />
         </Tab.Navigator>

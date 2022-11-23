@@ -8,6 +8,8 @@ const CategoryQuestions = ({navigation, route}) => {
     const {id} = route.params
     const [listQuestion, setListQuestion] = useState([])
     const [index, setIndex] = useState(0)
+    const answers = []
+    const results = []
 
     const getCategoryQuestions = async () => {
 
@@ -26,6 +28,23 @@ const CategoryQuestions = ({navigation, route}) => {
 
     const NextQuestion = () => {
         setIndex(index => index + 1)
+    }
+
+    const generateRandomNumber = () => {
+        const nRands = [0, 1, 2, 3]
+
+        for(let i=0; i<nRands.length; i++) {
+            const random = Math.floor(Math.random() * (4 - i))
+            results.push(nRands[random])
+            nRands[random] = nRands[4 - i]
+        }
+    }
+
+    const addElements = () => {
+        answers.push(listQuestion[index].correct_answer)
+        for(let i=0; i<3; i++) {
+            answers.push(listQuestion[index].incorrect_answers[i])
+        }
     }
 
     return (
@@ -50,6 +69,8 @@ const CategoryQuestions = ({navigation, route}) => {
                         </TouchableOpacity>
                         <Text style={{marginTop: 50, fontSize: 20}}>Good Game!</Text>
                     </View> : <View>
+                        {addElements()}
+                        {generateRandomNumber()}
                         <Text
                             style={styles.question}>{listQuestion[index].question.replace('S&#039;', '\'').replace('&oacute;', 'o').replace('&#039;', '\'').replace('&quot;', ' ')}</Text>
                         <View style={{justifyContent: 'flex-end'}}>
@@ -75,7 +96,7 @@ const CategoryQuestions = ({navigation, route}) => {
                                     <View style={styles.firstCircle}>
                                         <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>A</Text>
                                     </View>
-                                    <Text style={styles.response}>{listQuestion[index].correct_answer}</Text>
+                                    <Text style={styles.response}>{answers[results[0]]}</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     onPress={NextQuestion}
@@ -83,7 +104,7 @@ const CategoryQuestions = ({navigation, route}) => {
                                     <View style={styles.secondCircle}>
                                         <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>B</Text>
                                     </View>
-                                    <Text style={styles.response}>{listQuestion[index].incorrect_answers[0]}</Text>
+                                    <Text style={styles.response}>{answers[results[1]]}</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%'}}>
@@ -93,7 +114,7 @@ const CategoryQuestions = ({navigation, route}) => {
                                     <View style={styles.thirdCircle}>
                                         <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>C</Text>
                                     </View>
-                                    <Text style={styles.response}>{listQuestion[index].incorrect_answers[1]}</Text>
+                                    <Text style={styles.response}>{answers[results[2]]}</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     onPress={NextQuestion}
@@ -101,7 +122,7 @@ const CategoryQuestions = ({navigation, route}) => {
                                     <View style={styles.fourthCircle}>
                                         <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>D</Text>
                                     </View>
-                                    <Text style={styles.response}>{listQuestion[index].incorrect_answers[2]}</Text>
+                                    <Text style={styles.response}>{answers[results[3]]}</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

@@ -12,17 +12,13 @@ export const Categories = ({navigation}) => {
             setList(categories);
     },[])
 
-    const onPress = useCallback(() => {
-        navigation.navigate('CategoryQuestions')
-    },[])
-
     const renderItem = useCallback(({item}) => {
         return(
         <Card
             category={item.category}
             id={item.id}
             image={item.image}
-            onPress={onPress}
+            onPress={() => {navigation.navigate('CategoryQuestions', {id: item.id})}}
         />
         );
     },[])

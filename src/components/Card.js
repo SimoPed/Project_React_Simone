@@ -21,8 +21,13 @@ export const Card = memo(({id, category, image, onPress}) => {
                         resizeMode={'cover'}
                         style={{height: 150}}
                     >
-                        <View style={{justifyContent: 'center', alignItems: 'center', borderRadius: 20,}}>
+                        <View style={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}>
+                            <View style={{borderRadius: 20, marginTop: 15, backgroundColor: 'rgba(33, 22, 51, 0.5)',}}>
                             <Text style={styles.category}>{category.toUpperCase()}</Text>
+                            </View>
                         </View>
                         <View style={{alignItems: 'center', height: '50%', justifyContent: 'flex-end'}}>
                             <View style={{
@@ -51,9 +56,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         fontStyle: 'bold',
-        marginTop: 15,
         fontFamily: 'Inter_900Black',
-        backgroundColor: 'rgba(33, 22, 51, 0.5)',
+        overflow: 'hidden',
         paddingHorizontal: 20,
         color: 'white'
 

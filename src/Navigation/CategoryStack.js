@@ -14,7 +14,8 @@ export const CategoryStack = () => {
                 component={Categories}
             />
             <Stack.Screen
-                options={{headerShown: true}}
+
+                options={{headerShown: false, gestureEnabled: false}}
                 name='CategoryQuestions'
                 component={CategoryQuestions}
             />

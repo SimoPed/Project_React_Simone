@@ -1,18 +1,20 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import AnimatedLottieView from "lottie-react-native";
+import AnimatedView, {ZoomInUp, ZoomOutUp} from "react-native-reanimated";
 
-const getCategoryQuestions = async () => {
-    // const {category} = route.params
-    const response = await fetch('https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple');
-    const data = await response.json();
-    return data.results;
-}
+const CategoryQuestions = ({navigation, route}) => {
 
-const CategoryQuestions = ({navigation}) => {
-
+    const {id} = route.params
     const [listQuestion, setListQuestion] = useState([])
     const [index, setIndex] = useState(0)
+
+    const getCategoryQuestions = async () => {
+
+        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${id}&difficulty=easy&type=multiple`);
+        const data = await response.json();
+        return data.results;
+    }
 
     useEffect(() => {
         getCategoryQuestions().then(setListQuestion)
@@ -27,16 +29,27 @@ const CategoryQuestions = ({navigation}) => {
     }
 
     return (
-        <SafeAreaView style={{flex: 1}}>
-            <View style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
+            <View style={{flex: 1}}>
                 <View style={{alignItems: 'center', marginRight: 10, marginLeft: 10, marginTop: 10}}>
-                    {index == 10 ? <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate('Categories')
-                        }
-                        }>
-                        <Text style={{fontSize: 30}}>Categories</Text>
-                    </TouchableOpacity> : <View>
+                    {index == 10 ? <View style={{height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity
+                            style={{
+                                backgroundColor: 'green',
+                                paddingVertical: 10,
+                                paddingHorizontal: 30,
+                                borderRadius: 20,
+                                borderColor: 'black',
+                                borderWidth: 1
+                            }}
+                            onPress={() => {
+                                navigation.navigate('Categories')
+                            }
+                            }>
+                            <Text style={{fontSize: 30}}>Return to categories</Text>
+                        </TouchableOpacity>
+                        <Text style={{marginTop: 50, fontSize: 20}}>Good Game!</Text>
+                    </View> : <View>
                         <Text
                             style={styles.question}>{listQuestion[index].question.replace('&#039;', '\'').replace('&oacute;', 'o')}</Text>
                         <View style={{justifyContent: 'flex-end'}}>
@@ -48,13 +61,17 @@ const CategoryQuestions = ({navigation}) => {
                             }}>
                                 <TouchableOpacity
                                     onPress={NextQuestion}
-                                    style={styles.answers}>
-                                    <AnimatedLottieView
-                                        style={{width: 80, height: 80}}
-                                        // source={require('../lottie/correctAnimation.json')}
-                                        autoPlay={true}
-                                        loop={false}
-                                    />
+                                    style={{width: '40%',
+                                        height: '60%',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        backgroundColor: 'white',
+                                        borderRadius: 20}}>
+                                    {/*<AnimatedLottieView*/}
+                                    {/*    style={{width: 80, height: 80}}*/}
+                                    {/*    autoPlay={true}*/}
+                                    {/*    loop={false}*/}
+                                    {/*/>*/}
                                     <View style={styles.firstCircle}>
                                         <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>A</Text>
                                     </View>

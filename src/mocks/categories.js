@@ -1,8 +1,5 @@
 export const categories = [
-    {
-    category: 'Any Category',
-    image: 'https://d24ovhgu8s7341.cloudfront.net/uploads/post/cover/1900/galaxy-brain-m-stage-3.png'
-}, {
+{
     id: 9,
     category: 'General Knowledge',
     image: 'https://media.istockphoto.com/photos/earth-planet-sphere-on-green-leaves-background-ecology-and-care-picture-id1304283229?k=20&m=1304283229&s=170667a&w=0&h=9RZ1dKI39E_B22b1RwM8oy6xJL3WNkpQp2Mc_iaiwBQ='

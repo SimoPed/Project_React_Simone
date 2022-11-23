@@ -51,7 +51,7 @@ const CategoryQuestions = ({navigation, route}) => {
                         <Text style={{marginTop: 50, fontSize: 20}}>Good Game!</Text>
                     </View> : <View>
                         <Text
-                            style={styles.question}>{listQuestion[index].question.replace('&#039;', '\'').replace('&oacute;', 'o')}</Text>
+                            style={styles.question}>{listQuestion[index].question.replace('S&#039;', '\'').replace('&oacute;', 'o').replace('&#039;', '\'').replace('&quot;', ' ')}</Text>
                         <View style={{justifyContent: 'flex-end'}}>
                             <View style={{
                                 flexDirection: 'row',

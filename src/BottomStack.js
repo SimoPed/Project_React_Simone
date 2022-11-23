@@ -13,17 +13,17 @@ const Tab = createBottomTabNavigator();
 export const BottomStack = () => {
     return(
         <Tab.Navigator screenOptions={{headerShown: false,
-        tabBarStyle: {
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: 60,
-            position: 'absolute',
-            bottom: 16,
-            right: 16,
-            left: 16,
-            paddingTop: 6,
-            borderRadius: 20
-        }
+        // tabBarStyle: {
+        //     alignItems: 'center',
+        //     justifyContent: 'center',
+        //     height: 60,
+        //     position: 'absolute',
+        //     bottom: 16,
+        //     right: 16,
+        //     left: 16,
+        //     paddingTop: 6,
+        //     borderRadius: 20
+        // }
         }}>
             <Tab.Screen
                 options={{

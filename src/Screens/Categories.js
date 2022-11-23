@@ -2,7 +2,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Card} from "../components/Card";
 import {categories} from "../mocks/categories";
 import {View, FlatList, Text, StyleSheet, SafeAreaView} from "react-native";
-import {Inter_900Black, useFonts} from "@expo-google-fonts/inter";
 
 export const Categories = ({navigation}) => {
 
@@ -46,6 +45,5 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         marginBottom: 20,
-        fontFamily: 'Inter_900Black'
     }
 });

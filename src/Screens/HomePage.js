@@ -13,11 +13,6 @@ import CircularProgress from "react-native-circular-progress-indicator";
 import {useFonts, Inter_900Black} from '@expo-google-fonts/inter';
 
 export const HomePage = ({navigation}) => {
-
-    // const onPress = useCallback(() => {
-    //     navigation.navigate('Awards')
-    // }, [])
-
     return (
         <SafeAreaView style={{flex: 1, marginLeft: 15, marginRight: 15}}>
             <ScrollView>
@@ -26,8 +21,9 @@ export const HomePage = ({navigation}) => {
                         <Text style={{fontSize: 16, fontStyle: 'italic'}}>Hello George</Text>
                         <View style={{flex: 1, alignItems: 'flex-end'}}>
                             <TouchableOpacity
-                                // onPress={onPress}
-                                >
+                                onPress={() => {
+                                    navigation.navigate('Awards')
+                                }}>
                                 <Image source={{uri: 'https://wp-webhooks.com/storage/2021/07/icon-forminator.png'}}
                                        resizeMode={'contain'}
                                        style={{height: 50, width: 50, marginRight: 10}}
@@ -64,7 +60,11 @@ export const HomePage = ({navigation}) => {
                                             backgroundColor: 'white',
                                             flexDirection: 'row',
                                             alignItems: 'center'
-                                        }}>
+                                        }}
+                                                          onPress={() => {
+                                                              navigation.navigate('Categories')
+                                                          }}
+                                        >
                                             <Text style={{
                                                 marginLeft: 10,
                                                 marginRight: 10,
@@ -106,7 +106,10 @@ export const HomePage = ({navigation}) => {
                                             backgroundColor: 'white',
                                             flexDirection: 'row',
                                             alignItems: 'center'
-                                        }}>
+                                        }}
+                                                          onPress={() => {
+                                                              navigation.navigate('Categories')
+                                                          }}>
                                             <Text style={{
                                                 marginLeft: 10,
                                                 marginRight: 10,
@@ -148,7 +151,10 @@ export const HomePage = ({navigation}) => {
                                             backgroundColor: 'white',
                                             flexDirection: 'row',
                                             alignItems: 'center'
-                                        }}>
+                                        }}
+                                                          onPress={() => {
+                                                              navigation.navigate('Categories')
+                                                          }}>
                                             <Text style={{
                                                 marginLeft: 10,
                                                 marginRight: 10,
@@ -190,7 +196,10 @@ export const HomePage = ({navigation}) => {
                                             backgroundColor: 'white',
                                             flexDirection: 'row',
                                             alignItems: 'center'
-                                        }}>
+                                        }}
+                                                          onPress={() => {
+                                                              navigation.navigate('Categories')
+                                                          }}>
                                             <Text style={{
                                                 marginLeft: 10,
                                                 marginRight: 10,
@@ -238,7 +247,10 @@ export const HomePage = ({navigation}) => {
                                     backgroundColor: 'white',
                                     flexDirection: 'row',
                                     alignItems: 'center'
-                                }}>
+                                }}
+                                                  onPress={() => {
+                                                      navigation.navigate('Categories')
+                                                  }}>
                                     <Text style={{
                                         marginLeft: 10,
                                         marginRight: 10,
@@ -246,7 +258,7 @@ export const HomePage = ({navigation}) => {
                                         paddingBottom: 10,
                                         paddingTop: 10,
                                         fontSize: 25
-                                    }}>Start</Text>
+                                    }}>Show</Text>
                                     <Image
                                         source={{uri: 'https://assets.website-files.com/6140f6af9e586a6d27b33604/615603c97dae1fa001f8c003_NC_Icon_Logo_BLK%201.png'}}
                                         resizeMode={'contain'}

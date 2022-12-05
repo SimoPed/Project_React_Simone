@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import AnimatedLottieView from "lottie-react-native";
+import '../lottie/correctAnimation.json'
 import AnimatedView, {ZoomInUp, ZoomOutUp} from "react-native-reanimated";
 
 const CategoryQuestions = ({navigation, route}) => {
@@ -29,20 +30,26 @@ const CategoryQuestions = ({navigation, route}) => {
     }
 
     const NextQuestion = () => {
-        setPressed(true)
+
         for (let i = 0; i < 3; i++) {
             if (listQuestion[index].incorrect_answers[i] == answers[results[i]]) {
-                setBaseColor(colors[0])
+                return <AnimatedLottieView
+                    autoPlay={true}
+                    style={{width: 200, height: 200}}
+                    onAnimationFinish={() => setTimeout(() => {
+                        setIndex(index => index + 1)
+                        setBaseColor(colors[2])
+                    }, 3000)}
+                    source={require('../lottie/correctAnimation.json')}/>
             } else if (listQuestion[index].correct_answer == answers[results[i]]) {
-                setBaseColor(colors[1])
+                return <AnimatedLottieView autoPlay={true} source={require('../lottie/failAnimation.json')}/>
             }
         }
 
-        setTimeout(() => {
-            setIndex(index => index + 1)
-            setPressed(false)
-            setBaseColor(colors[2])
-        }, 3000)
+        // setTimeout(() => {
+        //     setIndex(index => index + 1)
+        //     setBaseColor(colors[2])
+        // }, 3000)
     }
 
     const generateRandomNumber = () => {
@@ -107,7 +114,7 @@ const CategoryQuestions = ({navigation, route}) => {
                                         height: '60%',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        backgroundColor: pressed ? baseColor : 'white',
+                                        backgroundColor: baseColor,
                                         borderRadius: 20
                                     }}>
                                     <View style={styles.firstCircle}>

@@ -10,9 +10,11 @@ const CategoryQuestions = ({navigation, route}) => {
     const [index, setIndex] = useState(0)
     const answers = []
     const results = []
+    const [pressed, setPressed] = useState(true)
+    const colors = ['red', 'green', 'white']
+    const [baseColor, setBaseColor] = useState(colors[2])
 
     const getCategoryQuestions = async () => {
-
         const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${id}&difficulty=easy&type=multiple`);
         const data = await response.json();
         return data.results;
@@ -27,25 +29,43 @@ const CategoryQuestions = ({navigation, route}) => {
     }
 
     const NextQuestion = () => {
-        setIndex(index => index + 1)
+        setPressed(true)
+        for (let i = 0; i < 3; i++) {
+            if (listQuestion[index].incorrect_answers[i] == answers[results[i]]) {
+                setBaseColor(colors[0])
+            } else if (listQuestion[index].correct_answer == answers[results[i]]) {
+                setBaseColor(colors[1])
+            }
+        }
+
+        setTimeout(() => {
+            setIndex(index => index + 1)
+            setPressed(false)
+            setBaseColor(colors[2])
+        }, 3000)
     }
 
     const generateRandomNumber = () => {
         const nRands = [0, 1, 2, 3]
 
-        for(let i=0; i<nRands.length; i++) {
-            const random = Math.floor(Math.random() * (4 - i))
+        for (let i = 0; i < nRands.length; i++) {
+            const random = Math.floor(Math.random() * (3 - i))
             results.push(nRands[random])
-            nRands[random] = nRands[4 - i]
+            nRands[random] = nRands[3 - i]
         }
     }
 
     const addElements = () => {
         answers.push(listQuestion[index].correct_answer)
-        for(let i=0; i<3; i++) {
+        for (let i = 0; i < 3; i++) {
             answers.push(listQuestion[index].incorrect_answers[i])
         }
     }
+
+    // function trueFalseRandom() {
+    //     generateRandomNumber()
+    //     setPressed(false)
+    // }
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
@@ -82,17 +102,14 @@ const CategoryQuestions = ({navigation, route}) => {
                             }}>
                                 <TouchableOpacity
                                     onPress={NextQuestion}
-                                    style={{width: '40%',
+                                    style={{
+                                        width: '40%',
                                         height: '60%',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        backgroundColor: 'white',
-                                        borderRadius: 20}}>
-                                    {/*<AnimatedLottieView*/}
-                                    {/*    style={{width: 80, height: 80}}*/}
-                                    {/*    autoPlay={true}*/}
-                                    {/*    loop={false}*/}
-                                    {/*/>*/}
+                                        backgroundColor: pressed ? baseColor : 'white',
+                                        borderRadius: 20
+                                    }}>
                                     <View style={styles.firstCircle}>
                                         <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>A</Text>
                                     </View>
@@ -100,7 +117,14 @@ const CategoryQuestions = ({navigation, route}) => {
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     onPress={NextQuestion}
-                                    style={styles.answers}>
+                                    style={{
+                                        width: '40%',
+                                        height: '60%',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        backgroundColor: baseColor,
+                                        borderRadius: 20
+                                    }}>
                                     <View style={styles.secondCircle}>
                                         <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>B</Text>
                                     </View>
@@ -110,7 +134,14 @@ const CategoryQuestions = ({navigation, route}) => {
                             <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%'}}>
                                 <TouchableOpacity
                                     onPress={NextQuestion}
-                                    style={styles.answers}>
+                                    style={{
+                                        width: '40%',
+                                        height: '60%',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        backgroundColor: baseColor,
+                                        borderRadius: 20
+                                    }}>
                                     <View style={styles.thirdCircle}>
                                         <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>C</Text>
                                     </View>
@@ -118,7 +149,14 @@ const CategoryQuestions = ({navigation, route}) => {
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     onPress={NextQuestion}
-                                    style={styles.answers}>
+                                    style={{
+                                        width: '40%',
+                                        height: '60%',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        backgroundColor: baseColor,
+                                        borderRadius: 20
+                                    }}>
                                     <View style={styles.fourthCircle}>
                                         <Text style={{fontSize: 25, fontStyle: 'bold', color: 'white'}}>D</Text>
                                     </View>

@@ -14,6 +14,15 @@ import CircularProgress from "react-native-circular-progress-indicator";
 import {useFonts, Inter_900Black} from '@expo-google-fonts/inter';
 
 export const HomePage = ({navigation}) => {
+
+    let [fontsLoaded] = useFonts({
+        Inter_900Black,
+    });
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
     return (
         <SafeAreaView style={{flex: 1, marginLeft: 15, marginRight: 15, paddingTop: Constants.statusBarHeight}}>
             <ScrollView>

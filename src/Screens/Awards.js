@@ -9,12 +9,13 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
+import Constants from 'expo-constants';
 import CircularProgress from "react-native-circular-progress-indicator";
 import {useFonts, Inter_900Black} from '@expo-google-fonts/inter';
 
 export const Awards = ({navigation}) => {
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, paddingTop: Constants.statusBarHeight}}>
             <ImageBackground
                 style={{flex: 1}}
                 source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Flag_blue_white_5x3.svg/1200px-Flag_blue_white_5x3.svg.png'}}>

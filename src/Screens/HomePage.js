@@ -7,14 +7,15 @@ import {
     View,
     Image,
     SafeAreaView,
-    ScrollView,
+    ScrollView
 } from "react-native";
+import Constants from 'expo-constants';
 import CircularProgress from "react-native-circular-progress-indicator";
 import {useFonts, Inter_900Black} from '@expo-google-fonts/inter';
 
 export const HomePage = ({navigation}) => {
     return (
-        <SafeAreaView style={{flex: 1, marginLeft: 15, marginRight: 15}}>
+        <SafeAreaView style={{flex: 1, marginLeft: 15, marginRight: 15, paddingTop: Constants.statusBarHeight}}>
             <ScrollView>
                 <View>
                     <View style={{flexDirection: 'row', alignItems: 'center'}}>

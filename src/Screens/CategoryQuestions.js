@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import AnimatedLottieView from "lottie-react-native";
+import LottieView from "lottie-react-native";
 import '../lottie/correctAnimation.json'
 import AnimatedView, {ZoomInUp, ZoomOutUp} from "react-native-reanimated";
+import CorrectAnimation from "../lottie/correctAnimation";
+import { SimpleAnimation } from 'react-native-simple-animations';
 
 const CategoryQuestions = ({navigation, route}) => {
 
@@ -11,9 +13,10 @@ const CategoryQuestions = ({navigation, route}) => {
     const [index, setIndex] = useState(0)
     const answers = []
     const results = []
-    const [pressed, setPressed] = useState(true)
+    const [pressed, setPressed] = useState(false)
     const colors = ['red', 'green', 'white']
     const [baseColor, setBaseColor] = useState(colors[2])
+    const [autoplay, setAutoplay] = useState(false)
 
     const getCategoryQuestions = async () => {
         const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${id}&difficulty=easy&type=multiple`);
@@ -30,26 +33,9 @@ const CategoryQuestions = ({navigation, route}) => {
     }
 
     const NextQuestion = () => {
-
-        for (let i = 0; i < 3; i++) {
-            if (listQuestion[index].incorrect_answers[i] == answers[results[i]]) {
-                return <AnimatedLottieView
-                    autoPlay={true}
-                    style={{width: 200, height: 200}}
-                    onAnimationFinish={() => setTimeout(() => {
-                        setIndex(index => index + 1)
-                        setBaseColor(colors[2])
-                    }, 3000)}
-                    source={require('../lottie/correctAnimation.json')}/>
-            } else if (listQuestion[index].correct_answer == answers[results[i]]) {
-                return <AnimatedLottieView autoPlay={true} source={require('../lottie/failAnimation.json')}/>
-            }
-        }
-
-        // setTimeout(() => {
-        //     setIndex(index => index + 1)
-        //     setBaseColor(colors[2])
-        // }, 3000)
+        setPressed(true)
+        setAutoplay(true)
+        setIndex(index => index + 1)
     }
 
     const generateRandomNumber = () => {
@@ -69,16 +55,12 @@ const CategoryQuestions = ({navigation, route}) => {
         }
     }
 
-    // function trueFalseRandom() {
-    //     generateRandomNumber()
-    //     setPressed(false)
-    // }
-
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: 'rgb(100, 79, 209)'}}>
             <View style={{flex: 1}}>
                 <View style={{alignItems: 'center', marginRight: 10, marginLeft: 10, marginTop: 10}}>
                     {index == 10 ? <View style={{height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+                        <SimpleAnimation delay={500} duration={1000} fade={true} staticType='zoom'>
                         <TouchableOpacity
                             style={{
                                 backgroundColor: 'green',
@@ -94,6 +76,7 @@ const CategoryQuestions = ({navigation, route}) => {
                             }>
                             <Text style={{fontSize: 30}}>Return to categories</Text>
                         </TouchableOpacity>
+                        </SimpleAnimation>
                         <Text style={{marginTop: 50, fontSize: 20}}>Good Game!</Text>
                     </View> : <View>
                         {addElements()}
@@ -169,6 +152,14 @@ const CategoryQuestions = ({navigation, route}) => {
                                     </View>
                                     <Text style={styles.response}>{answers[results[3]]}</Text>
                                 </TouchableOpacity>
+                            </View>
+                            <View style={{alignItems: 'center'}}>
+                                <CorrectAnimation
+                                pressed={pressed}
+                                source={require('../lottie/correctAnimation.json')}
+                                autoplay={autoplay}
+                                style={{width: 100, height: 100}}
+                                />
                             </View>
                         </View>
                     </View>

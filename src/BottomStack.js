@@ -17,7 +17,7 @@ export const BottomStack = () => {
                     left: 15,
                     right: 15,
                     backgroundColor: '#ffffff',
-                    borderRadius: 20,
+                    borderRadius: 30,
                     paddingBottom: 5
             }
         }}>

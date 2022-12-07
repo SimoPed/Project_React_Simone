@@ -88,7 +88,7 @@ const CategoryQuestions = ({navigation, route}) => {
                                 flexDirection: 'row',
                                 justifyContent: 'space-around',
                                 width: '100%',
-                                marginTop: 30
+                                // marginTop: 30
                             }}>
                                 <TouchableOpacity
                                     onPress={NextQuestion}
@@ -182,13 +182,17 @@ const styles = StyleSheet.create({
     response: {
         fontSize: 20,
         fontFamily: 'Inter_900Black',
-        textAlign: 'center'
+        textAlign: 'center',
+        paddingRight: 5,
+        paddingLeft: 5
     },
     question: {
-        fontSize: 25,
+        fontSize: 23,
         fontFamily: 'Inter_900Black',
         textAlign: 'center',
-        color: 'white'
+        color: 'white',
+        paddingLeft: 20,
+        paddingRight: 20
     },
     firstCircle: {
         marginBottom: 20,

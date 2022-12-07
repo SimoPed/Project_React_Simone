@@ -29,13 +29,10 @@ export const Awards = ({navigation}) => {
                         style={{flexDirection: 'row', alignItems: 'center', shadowColor: 'black', shadowOpacity: 0.4}}>
                         <ScrollView
                             horizontal={true}
-                            // pagingEnabled={true}
-                            // centerContent={true}
                             contentContainerStyle={{alignItems: 'center'}}
-                            // contentOffset={{x: 0, y: 0}}
                         >
                             <View style={{
-                                width: '26%',
+                                width: '25%',
                                 alignItems: 'center',
                                 marginTop: 30,
                                 backgroundColor: 'white',
